@@ -5,10 +5,11 @@ AI powered citizen complaint system.
 Tech Stack:
 - FastAPI
 - MongoDB Atlas
-- OpenAI GPT
+- Google Gemini API
 - Python
 
 Features:
 - AI complaint analysis
 - Cloud database storage
 - API based complaint submission
+
