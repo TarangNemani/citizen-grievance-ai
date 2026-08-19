@@ -1,13 +1,14 @@
-from openai import OpenAI
+# ai_engine.py — Gemini version
 import os
+import google.generativeai as genai
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def analyze_complaint(text):
-
     prompt = f"""
     Analyze the following citizen complaint.
 
@@ -18,12 +19,5 @@ def analyze_complaint(text):
     2. Urgency (Low/Medium/High)
     3. Short Summary
     """
-
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response.choices[0].message.content
+    response = model.generate_content(prompt)
+    return response.text
